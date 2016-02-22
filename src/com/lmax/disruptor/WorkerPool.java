@@ -29,6 +29,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class WorkerPool<T>
 {
     private final AtomicBoolean started = new AtomicBoolean(false);
+    /**
+     * 1.Pool当前处理任务的整体进度
+     */
     private final Sequence workSequence = new Sequence(Sequencer.INITIAL_CURSOR_VALUE);
     private final RingBuffer<T> ringBuffer;
     // WorkProcessors are created to wrap each of the provided WorkHandlers

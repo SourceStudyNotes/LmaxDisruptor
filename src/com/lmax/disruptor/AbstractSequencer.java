@@ -26,6 +26,9 @@ import com.lmax.disruptor.util.Util;
  */
 public abstract class AbstractSequencer implements Sequencer
 {
+    /**
+     * 经过netty作者测试，这里用updater比用普通的Atomic*原子对象节省很多内存空间，http://normanmaurer.me/blog/2013/10/28/Lesser-known-concurrent-classes-Part-1/
+     */
     private static final AtomicReferenceFieldUpdater<AbstractSequencer, Sequence[]> SEQUENCE_UPDATER =
             AtomicReferenceFieldUpdater.newUpdater(AbstractSequencer.class, Sequence[].class, "gatingSequences");
 

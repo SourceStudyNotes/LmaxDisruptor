@@ -29,11 +29,20 @@ public final class WorkProcessor<T>
     implements EventProcessor
 {
     private final AtomicBoolean running = new AtomicBoolean(false);
+    /**
+     * 当前processor的处理进度
+     */
     private final Sequence sequence = new Sequence(Sequencer.INITIAL_CURSOR_VALUE);
     private final RingBuffer<T> ringBuffer;
+    /**
+     * 同步生产者和消息者的栏栅
+     */
     private final SequenceBarrier sequenceBarrier;
     private final WorkHandler<? super T> workHandler;
     private final ExceptionHandler<? super T> exceptionHandler;
+    /**
+     * pool的整体进度
+     */
     private final Sequence workSequence;
 
     private final EventReleaser eventReleaser = new EventReleaser()

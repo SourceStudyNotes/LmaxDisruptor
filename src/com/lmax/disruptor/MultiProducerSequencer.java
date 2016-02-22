@@ -106,6 +106,9 @@ public final class MultiProducerSequencer extends AbstractSequencer
     }
 
     /**
+     * <p>
+     * 解决多个生产者多个消费者之间同步问题，cachedGatingSequence记录上次最小的seq，gatingSequences代表生产者和消息者当前处理的seq；
+     * </p>
      * @see Sequencer#next(int)
      */
     @Override
